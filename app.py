@@ -16,10 +16,15 @@ CORS(app)
 
 app.register_blueprint(api, url_prefix='/api')
 
-# Serve o frontend no root /
+# Serve o React no root
 @app.route('/')
-def serve_frontend():
+def serve_react():
     return send_from_directory(app.static_folder, 'index.html')
+
+# Serve qualquer arquivo estático necessário (como JS, CSS, imagens)
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory(app.static_folder, path)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
