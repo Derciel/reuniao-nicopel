@@ -10,7 +10,7 @@ function AddMeeting({ onMeetingAdded }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('https://agendador-reuniao-nicopel.onrender.com//api/meetings', {
+    axios.post('https://agendador-reuniao-nicopel.onrender.com/', {
       title,
       start,
       end,

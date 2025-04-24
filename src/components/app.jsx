@@ -11,7 +11,7 @@ function App() {
   const [events, setEvents] = useState([]);
 
   const fetchMeetings = () => {
-    axios.get('https://agendador-reuniao-nicopel.onrender.com/api/meetings')
+    axios.get('https://agendador-reuniao-nicopel.onrender.com/')
       .then(res => setEvents(res.data))
       .catch(err => console.error(err));
   };
