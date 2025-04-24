@@ -1,0 +1,29 @@
+# Ambiente virtual
+venv/
+ENV/
+env/
+.venv/
+
+# Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Configurações de IDE
+.vscode/
+.idea/
+*.swp
+
+# Variáveis de ambiente (segurança)
+.env
+
+# Arquivos de log
+*.log
+
+# Dependências do PyCharm
+*.iml
