@@ -1,30 +1,25 @@
-from flask import Flask, jsonify
+from flask import Flask, send_from_directory
 from flask_cors import CORS
-from models import db
+from database import db
 from routes import api
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 
-load_dotenv()  # Carrega variáveis do .env
+load_dotenv()
 
-app = Flask(__name__)
-CORS(app)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app = Flask(__name__, static_folder="static", static_url_path="/")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
+CORS(app)
+
 app.register_blueprint(api, url_prefix='/api')
 
-# 🟢 Rota de teste para saber se o backend está funcionando:
+# Serve o frontend no root /
 @app.route('/')
-def index():
-    return jsonify({'message': '🚀 Backend rodando com sucesso!'})
-
-with app.app_context():
-    db.create_all()
+def serve_frontend():
+    return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == "__main__":
-    from dotenv import load_dotenv
-    load_dotenv()
     app.run(host="0.0.0.0", port=10000)
