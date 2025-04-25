@@ -1,8 +1,12 @@
+# render.yaml
 services:
   - type: web
     name: reuniao-nicopel-frontend
     env: node
-    buildCommand: "npm install -g vite && npm install && npm run build"
-    startCommand: "npx vite preview --port $PORT"
-    publishPath: "dist"
+    region: sa-east-1  # Região do Brasil (opcional)
+    nodeVersion: 20.13.1  # Versão compatível com seu projeto
+    buildCommand: "npm install && npm run build"
+    startCommand: "serve -s dist -l $PORT"  # Serve para aplicação estática
+    publishPath: "/dist"
+    staticSite: true  # Indica que é um site estático
     autoDeploy: true

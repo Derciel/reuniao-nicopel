@@ -1,4 +1,3 @@
-// vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import commonjs from '@rollup/plugin-commonjs';
@@ -8,16 +7,15 @@ export default defineConfig({
     react(),
     commonjs({
       include: /node_modules/,
+      // Força o Rollup a processar CommonJS corretamente
+      requireReturnsDefault: 'auto'
     })
   ],
-  resolve: {
-    alias: {
-      './env/data.js': 'axios/lib/env/data.js'
-    }
-  },
   build: {
     commonjsOptions: {
-      transformMixedEsModules: true
+      transformMixedEsModules: true,
+      // Garante que o React seja tratado como ES Module
+      esmExternals: ['react', 'react-dom']
     }
   }
 });
