@@ -1,12 +1,11 @@
 {
   "name": "sala-reuniao-frontend",
   "version": "0.0.1",
-  "scripts": {
-    "dev": "vite",
-    "build": "npx vite build",
-    "preview": "vite preview",
-    "postinstall": "echo '✅ Instalação concluída. Para desenvolvimento local, use: npm run dev'"
-  },
+"scripts": {
+  "dev": "vite",
+  "build": "npx vite build",
+  "postinstall": "chmod +x ./node_modules/.bin/vite"
+},
   "dependencies": {
     "@fullcalendar/daygrid": "^6.1.10",
     "@fullcalendar/interaction": "^6.1.10",
