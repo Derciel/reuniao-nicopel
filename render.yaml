@@ -1,12 +1,16 @@
-# render.yaml
 services:
   - type: web
-    name: reuniao-nicopel-frontend
+    name: sala-reuniao-frontend
     env: node
-    region: sa-east-1  # Região do Brasil (opcional)
-    nodeVersion: 20.13.1  # Versão compatível com seu projeto
-    buildCommand: "npm install && npm run build"
-    startCommand: "serve -s dist -l $PORT"  # Serve para aplicação estática
-    publishPath: "/dist"
-    staticSite: true  # Indica que é um site estático
+    plan: free
+    buildCommand: |
+      rm -rf node_modules package-lock.json
+      npm install
+      npm run build
+    startCommand: npm run preview
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: VITE_DATABASE_URL
+        value: "postgresql://neondb_owner:npg_eli6x8japnmP@ep-fragrant-heart-a4f388d0-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
     autoDeploy: true

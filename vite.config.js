@@ -1,25 +1,21 @@
+// vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import commonjs from '@rollup/plugin-commonjs';
 
 export default defineConfig({
-  plugins: [
-    react(),
-    commonjs({
-      include: [
-        /node_modules\/@fullcalendar/,
-        /node_modules\/axios/
-      ],
-      requireReturnsDefault: 'auto'
-    })
-  ],
-  build: {
-    commonjsOptions: {
-      transformMixedEsModules: true,
-      esmExternals: true
-    }
-  },
+  plugins: [react()],
   optimizeDeps: {
-    include: ['axios']
-  }
+    include: ['axios'], // Garante que o axios será pré-empacotado corretamente
+  },
+  build: {
+    target: 'esnext',   // Mantém o código moderno e compatível com o ambiente do Render
+    commonjsOptions: {
+      include: [/node_modules/], // Trata CommonJS corretamente, incluindo o axios
+    },
+  },
+  resolve: {
+    alias: {
+      '@': '/src', // Permite usar imports como import X from '@/components/X'
+    },
+  },
 });

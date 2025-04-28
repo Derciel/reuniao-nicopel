@@ -2,9 +2,9 @@
   "name": "sala-reuniao-frontend",
   "version": "0.0.1",
   "scripts": {
-    "dev": "npx vite",
-    "build": "npx vite build",
-    "preview": "npx vite preview"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@fullcalendar/daygrid": "^6.1.11",
