@@ -16,7 +16,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': '/src',
-      'axios': 'axios/dist/axios.js'  // 👉 Adiciona o alias aqui também!
     },
   },
 });
