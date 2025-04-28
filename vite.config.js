@@ -5,17 +5,18 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    include: ['axios'], // Garante que o axios será pré-empacotado corretamente
+    include: ['axios'], 
   },
   build: {
-    target: 'esnext',   // Mantém o código moderno e compatível com o ambiente do Render
+    target: 'esnext',
     commonjsOptions: {
-      include: [/node_modules/], // Trata CommonJS corretamente, incluindo o axios
+      include: [/node_modules/], 
     },
   },
   resolve: {
     alias: {
-      '@': '/src', // Permite usar imports como import X from '@/components/X'
+      '@': '/src',
+      'axios': 'axios/dist/axios.js'  // 👉 Adiciona o alias aqui também!
     },
   },
 });
